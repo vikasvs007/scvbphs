@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - SCV and BPHS{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+    <div class="header-content">
+        <h1 style="color: #ffffff; font-size: 48px; font-weight: bold; text-transform: uppercase; margin: 0; padding: 20px; position: relative; z-index: 1000;">Contact Us</h1>
+        <div class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>//</span>
+            <span>Contact</span>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <div class="info-box">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Call Us</h3>
+                    <p>Admissions: 6210298922 / 7415451947</p>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>General information: info@schoolofindia.com</p>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit Us</h3>
+                    <p>Al No: 2923<br>
+                    Khasim Khan Nagar,<br>
+                    Mysore Channarayapatna Highway,<br>
+                    Krishnarajpet,<br>
+                    Mandya Dist - 571426</p>
+                </div>
+                
+                <div class="info-box">
+                    <i class="far fa-clock"></i>
+                    <h3>Office Hours</h3>
+                    <p>Monday - Friday: 9 am - 4 pm<br>
+                    Saturday: 9 am - 1 pm</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Write to us</h2>
+                <p>Write to us with your queries and we will get back to you as soon as possible.</p>
+                
+                <form action="{{ url_for('submit_contact') }}" method="POST">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select Option</option>
+                            <option value="Admission Enquiry">Admission Enquiry</option>
+                            <option value="General Query">General Query</option>
+                            <option value="Feedback">Feedback</option>
+                            <option value="Complaint">Complaint</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Query/Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Bubble Animation Styles */
+    .bubbles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
+    .bubble {
+        position: absolute;
+        bottom: -100px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        opacity: 0.5;
+        animation: rise 10s infinite ease-in;
+    }
+
+    /* Bubble positions and animations */
+    .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
+    .bubble:nth-child(2) { width: 20px; height: 20px; left: 20%; animation-duration: 5s; animation-delay: 1s; }
+    .bubble:nth-child(3) { width: 50px; height: 50px; left: 35%; animation-duration: 7s; animation-delay: 2s; }
+    .bubble:nth-child(4) { width: 80px; height: 80px; left: 50%; animation-duration: 11s; }
+    .bubble:nth-child(5) { width: 35px; height: 35px; left: 55%; animation-duration: 6s; animation-delay: 1s; }
+    .bubble:nth-child(6) { width: 45px; height: 45px; left: 65%; animation-duration: 8s; animation-delay: 3s; }
+    .bubble:nth-child(7) { width: 25px; height: 25px; left: 75%; animation-duration: 7s; animation-delay: 2s; }
+    .bubble:nth-child(8) { width: 80px; height: 80px; left: 80%; animation-duration: 6s; animation-delay: 1s; }
+    .bubble:nth-child(9) { width: 15px; height: 15px; left: 70%; animation-duration: 9s; }
+    .bubble:nth-child(10) { width: 50px; height: 50px; left: 85%; animation-duration: 5s; animation-delay: 3s; }
+
+    @keyframes rise {
+        0% {
+            bottom: -100px;
+            transform: translateX(0) scale(1);
+            opacity: 0.5;
+        }
+        50% {
+            transform: translateX(100px) scale(1.1);
+            opacity: 0.8;
+        }
+        100% {
+            bottom: 100%;
+            transform: translateX(-200px) scale(0.8);
+            opacity: 0;
+        }
+    }
+
+    /* Contact Section Styles */
+    .contact-section {
+        padding: 80px 0;
+        background: #f8f9fa;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: start;
+    }
+
+    /* Contact Info Styles */
+    .contact-info {
+        display: grid;
+        gap: 30px;
+    }
+
+    .info-box {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .info-box:hover {
+        transform: translateY(-5px);
+    }
+
+    .info-box i {
+        font-size: 2rem;
+        color: #463AA1;
+        margin-bottom: 15px;
+    }
+
+    .info-box h3 {
+        color: #333;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .info-box p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Contact Form Styles */
+    .contact-form {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .contact-form h2 {
+        color: #463AA1;
+        margin-bottom: 10px;
+        font-size: 2rem;
+    }
+
+    .contact-form p {
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: #463AA1;
+        outline: none;
+    }
+
+    .submit-btn {
+        background: #463AA1;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        background: #6c5ce7;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact-section {
+            padding: 60px 0;
+        }
+
+        .info-box {
+            padding: 20px;
+        }
+
+        .contact-form {
+            padding: 30px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-form h2 {
+            font-size: 1.8rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+        }
+    }
+</style>
+
+{% endblock %} 

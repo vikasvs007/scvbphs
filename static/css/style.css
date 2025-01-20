@@ -1,0 +1,770 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #4a90e2;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #4527a0, #00bcd4);
+    padding: 120px 5% 60px;
+    color: white;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.image-grid img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.image-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* Welcome Section */
+.welcome {
+    padding: 60px 5%;
+    text-align: center;
+    background: #f5f5f5;
+}
+
+.welcome h2 {
+    color: #4527a0;
+    margin-bottom: 1rem;
+}
+
+.welcome h3 {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.welcome p {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+}
+
+/* Pillars Section */
+.pillars {
+    padding: 60px 5%;
+    text-align: center;
+}
+
+.pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto 0;
+}
+
+.pillar-item {
+    text-align: center;
+}
+
+.pillar-item img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    transition: transform 0.3s;
+}
+
+.pillar-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Philosophy Section */
+.philosophy {
+    padding: 60px 5%;
+    background: #f5f5f5;
+}
+
+.philosophy-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Students Speak Section */
+.students-speak {
+    padding: 60px 5%;
+    text-align: center;
+    background: #f8f8f8;
+}
+
+.students-speak h2 {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 2rem;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Video Container Styles */
+.video-container {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.video-container iframe,
+.html5-video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    outline: 0;
+    font-family: "YouTube Noto", Roboto, Arial, Helvetica, sans-serif;
+    color: #eee;
+    text-align: left;
+    direction: ltr;
+    font-size: 11px;
+    line-height: 1.3;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    touch-action: manipulation;
+}
+
+.video-wrapper {
+    position: relative;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.video-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.video-wrapper:hover::before {
+    opacity: 1;
+}
+
+.video-title {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.video-description {
+    margin-top: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    padding: 40px 5% 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .pillar-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .video-container {
+        margin: 1rem auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/header-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 80px;
+}
+
+.header-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.breadcrumb {
+    font-size: 1.1rem;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+}
+
+.breadcrumb span {
+    margin: 0 10px;
+}
+
+/* Admissions Content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.admissions-content {
+    padding: 60px 0;
+}
+
+.admission-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.admission-title h2 {
+    color: #4527a0;
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.admission-title h2:after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: #4527a0;
+    margin: 10px auto;
+}
+
+/* Enquiry Section */
+.enquiry-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.enquiry-form {
+    background: #f5f5f5;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.enquiry-form h3 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #4527a0;
+    outline: none;
+}
+
+.enquire-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff3d00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.enquire-btn:hover {
+    background: #d32f2f;
+}
+
+.enquiry-image img {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Trust Section */
+.trust-section {
+    background: #f9f9f9;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.trust-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.trust-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.trust-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Responsive Design for Admissions */
+@media (max-width: 768px) {
+    .page-header {
+        height: 200px;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .enquiry-section {
+        grid-template-columns: 1fr;
+    }
+
+    .enquiry-image {
+        order: -1;
+    }
+
+    .enquiry-image img {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admission-title h2 {
+        font-size: 1.5rem;
+    }
+
+    .enquiry-form {
+        padding: 20px;
+    }
+}
+
+/* Flash Messages */
+.flash-messages {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 400px;
+}
+
+.flash-message {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.3s ease-out;
+}
+
+.flash-message.success {
+    background-color: #4caf50;
+}
+
+.flash-message.error {
+    background-color: #f44336;
+}
+
+.flash-message.info {
+    background-color: #2196f3;
+}
+
+.close-flash {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 0 0 10px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Trust Showcase Section */
+.trust-showcase {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.trust-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.trust-header h2 {
+    color: #0066cc;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.trust-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.trust-image-text {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.trust-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.trust-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Role Model Section */
+.role-model {
+    background: #0066cc;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.role-model h2 {
+    font-size: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Team Section */
+.team-section {
+    padding: 80px 0;
+    background: #f8f8f8;
+}
+
+.team-section h2 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.team-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team-member {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.member-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.team-member:hover .member-image img {
+    transform: scale(1.05);
+}
+
+.member-info {
+    padding: 20px;
+}
+
+.member-info h3 {
+    color: #0066cc;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.member-title {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.member-description {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive Design for About Page */
+@media (max-width: 992px) {
+    .trust-image-text {
+        grid-template-columns: 1fr;
+    }
+
+    .trust-header h2 {
+        font-size: 2rem;
+    }
+
+    .role-model h2 {
+        font-size: 1.8rem;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .trust-showcase {
+        padding: 60px 0;
+    }
+
+    .trust-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .trust-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .member-image {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .trust-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .role-model h2 {
+        font-size: 1.5rem;
+    }
+
+    .team-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .team-intro {
+        font-size: 1rem;
+    }
+} 

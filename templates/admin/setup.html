@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Setup Admin Account - School of India{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="header-content">
+        <h1>SETUP ADMIN ACCOUNT</h1>
+        <div class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>//</span>
+            <span>Setup Admin</span>
+        </div>
+    </div>
+</section>
+
+<section class="admin-setup">
+    <div class="container">
+        <div class="setup-form-container">
+            <div class="setup-form-wrapper">
+                <h2>Create Administrator Account</h2>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form method="POST" action="{{ url_for('setup_admin') }}" class="setup-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="setup-btn">Create Admin Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-setup {
+        padding: 60px 0;
+        background: #f5f5f5;
+        min-height: calc(100vh - 400px);
+    }
+
+    .setup-form-container {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .setup-form-wrapper {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .setup-form-wrapper h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    .setup-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .setup-form label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+
+    .setup-form input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .setup-form input:focus {
+        border-color: #4527a0;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(69,39,160,0.1);
+    }
+
+    .setup-btn {
+        width: 100%;
+        padding: 12px;
+        background: #4527a0;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .setup-btn:hover {
+        background: #371e7d;
+    }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .alert-error {
+        background: #ffebee;
+        color: #c62828;
+        border: 1px solid #ffcdd2;
+    }
+
+    .alert-success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border: 1px solid #c8e6c9;
+    }
+</style>
+{% endblock %} 

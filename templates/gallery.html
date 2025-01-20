@@ -1,0 +1,509 @@
+{% extends "base.html" %}
+{% block title %}Gallery - SCV and BPHS{% endblock %}
+
+{% block content %}
+<section class="gallery-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="animate-title">OUR GALLERY</h1>
+            <p class="animate-subtitle">Capturing moments, celebrating achievements, and sharing memories</p>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-albums">
+    <div class="container">
+        <div class="album-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="events">Events</button>
+            <button class="filter-btn" data-filter="activities">Activities</button>
+            <button class="filter-btn" data-filter="achievements">Achievements</button>
+            <button class="filter-btn" data-filter="campus">Campus</button>
+        </div>
+
+        <div class="albums-grid">
+            <!-- Campus Photos Album -->
+            <div class="album-item" data-category="campus">
+                <div class="album-cover">
+                    <img src="static/images/photogallery/schoolpho.jpeg" alt="Campus Photos">
+                    <div class="album-overlay">
+                        <span class="photo-count"><i class="fas fa-image"></i> 10 Photos</span>
+                    </div>
+                </div>
+                <div class="album-info">
+                    <h3>Campus Life</h3>
+                    <p>Exploring our beautiful campus and facilities</p>
+                    <a href="{{ url_for('view_album', album_name='campus') }}" class="view-album">View Album <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Events Album -->
+            <div class="album-item" data-category="events">
+                <div class="album-cover">
+                    <img src="static/images/photogallery/sankranti.jpeg" alt="School Events">
+                    <div class="album-overlay">
+                        <span class="photo-count"><i class="fas fa-image"></i> 10 Photos</span>
+                    </div>
+                </div>
+                <div class="album-info">
+                    <h3>School Events</h3>
+                    <p>Celebrating special moments and achievements</p>
+                    <a href="{{ url_for('view_album', album_name='events') }}" class="view-album">View Album <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Activities Album -->
+            <div class="album-item" data-category="activities">
+                <div class="album-cover">
+                    <img src="static/images/photogallery/parents7.jpeg" alt="Student Activities">
+                    <div class="album-overlay">
+                        <span class="photo-count"><i class="fas fa-image"></i> 10 Photos</span>
+                    </div>
+                </div>
+                <div class="album-info">
+                    <h3>Student Activities</h3>
+                    <p>Engaging in various educational and extracurricular activities</p>
+                    <a href="{{ url_for('view_album', album_name='activities') }}" class="view-album">View Album <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Achievements Album -->
+            <div class="album-item" data-category="achievements">
+                <div class="album-cover">
+                    <img src="static/images/photogallery/prize1.jpeg" alt="Student Achievements">
+                    <div class="album-overlay">
+                        <span class="photo-count"><i class="fas fa-image"></i> 10 Photos</span>
+                    </div>
+                </div>
+                <div class="album-info">
+                    <h3>Student Achievements</h3>
+                    <p>Showcasing our students' accomplishments and awards</p>
+                    <a href="{{ url_for('view_album', album_name='achievements') }}" class="view-album">View Album <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .gallery-hero {
+        background: linear-gradient(135deg, #463AA1, #6c5ce7);
+        color: white;
+        padding: 120px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .gallery-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("{{ url_for('static', filename='images/pattern.png') }}");
+        background-repeat: repeat;
+        opacity: 0.1;
+        animation: slide 20s linear infinite;
+    }
+
+    .animate-title {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        opacity: 0;
+        transform: translateY(-30px);
+        animation: titleAnimation 1s ease-out forwards;
+    }
+
+    .animate-subtitle {
+        font-size: 1.2rem;
+        opacity: 0;
+        max-width: 600px;
+        margin: 0 auto;
+        transform: translateY(30px);
+        animation: subtitleAnimation 1s ease-out 0.3s forwards;
+    }
+
+    .floating-shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .shape {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: float 15s infinite;
+    }
+
+    .shape-1 {
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .shape-2 {
+        width: 150px;
+        height: 150px;
+        top: 60%;
+        right: 15%;
+        animation-delay: -5s;
+    }
+
+    .shape-3 {
+        width: 70px;
+        height: 70px;
+        top: 30%;
+        right: 25%;
+        animation-delay: -2s;
+    }
+
+    .shape-4 {
+        width: 120px;
+        height: 120px;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: -7s;
+    }
+
+    @keyframes titleAnimation {
+        0% {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes subtitleAnimation {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        100% {
+            opacity: 0.9;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+            transform: translate(50px, -50px) rotate(90deg);
+        }
+        50% {
+            transform: translate(0, -100px) rotate(180deg);
+        }
+        75% {
+            transform: translate(-50px, -50px) rotate(270deg);
+        }
+    }
+
+    @keyframes slide {
+        from {
+            background-position: 0 0;
+        }
+        to {
+            background-position: 100% 100%;
+        }
+    }
+
+    /* Add a glowing effect to the title on hover */
+    .animate-title:hover {
+        animation: glowEffect 2s infinite;
+    }
+
+    @keyframes glowEffect {
+        0%, 100% {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        50% {
+            text-shadow: 0 0 20px rgba(255,255,255,0.5),
+                         0 0 30px rgba(255,255,255,0.3);
+        }
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .animate-title {
+            font-size: 2.5rem;
+        }
+
+        .animate-subtitle {
+            font-size: 1rem;
+            padding: 0 20px;
+        }
+
+        .shape {
+            display: none;
+        }
+    }
+
+    .gallery-albums {
+        padding: 80px 0;
+        background: #f8f9fa;
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .album-filters {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 30px;
+        background: white;
+        color: #463AA1;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+        background: #463AA1;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(70,58,161,0.3);
+    }
+
+    .albums-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .album-item {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        animation: fadeIn 0.5s ease-out both;
+    }
+
+    .album-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .album-cover {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+    }
+
+    .album-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .album-item:hover .album-cover img {
+        transform: scale(1.1);
+    }
+
+    .album-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .album-item:hover .album-overlay {
+        opacity: 1;
+    }
+
+    .photo-count {
+        color: white;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .album-info {
+        padding: 20px;
+    }
+
+    .album-info h3 {
+        color: #333;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .album-info p {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    .view-album {
+        color: #463AA1;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .view-album:hover {
+        color: #6c5ce7;
+        gap: 12px;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 1200px) {
+        .albums-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .gallery-hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .gallery-hero p {
+            font-size: 1rem;
+        }
+
+        .albums-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .album-filters {
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const albumItems = document.querySelectorAll('.album-item');
+
+    // Function to apply filter
+    function applyFilter(filter) {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to the button with matching filter
+        filterBtns.forEach(b => {
+            if (b.dataset.filter === filter) {
+                b.classList.add('active');
+            }
+        });
+
+        albumItems.forEach(item => {
+            if (filter === 'all' || item.dataset.category.includes(filter)) {
+                item.style.display = 'block';
+                item.style.animation = 'fadeIn 0.5s ease-out forwards';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Get filter from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter') || 'all';
+    
+    // Apply initial filter from URL
+    applyFilter(filterParam);
+
+    // Add click handlers for filter buttons
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+            applyFilter(filter);
+            // Update URL without reloading the page
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set('filter', filter);
+            window.history.pushState({}, '', newUrl);
+        });
+    });
+});
+</script>
+{% endblock %} 

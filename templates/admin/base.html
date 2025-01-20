@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    <div class="header-content">
+        <h1>{% block admin_title %}{% endblock %}</h1>
+        <div class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>//</span>
+            <span>{% block breadcrumb %}{% endblock %}</span>
+        </div>
+    </div>
+</section>
+
+<section class="admin-section">
+    <div class="container">
+        {% block admin_content %}{% endblock %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-section {
+        padding: 60px 0;
+        background: #f5f5f5;
+        min-height: calc(100vh - 400px);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    {% block admin_css %}{% endblock %}
+</style>
+{% endblock %} 

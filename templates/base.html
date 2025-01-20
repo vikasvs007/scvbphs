@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SCVBPHS{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="static/images/Blue White Modern school Logo.png" type="image/x-icon">
+    {% block extra_css %}{% endblock %}
+    <style>
+        /* Hero Section Animations - Global */
+        .page-header {
+            background: linear-gradient(135deg, #463AA1, #6c5ce7);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("{{ url_for('static', filename='images/pattern.png') }}");
+            background-repeat: repeat;
+            opacity: 0.1;
+            animation: slide 20s linear infinite;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: titleAnimation 1s ease-out forwards;
+        }
+
+        .page-header .breadcrumb {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: subtitleAnimation 1s ease-out 0.3s forwards;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            width: 70px;
+            height: 70px;
+            top: 30%;
+            right: 25%;
+            animation-delay: -2s;
+        }
+
+        .shape-4 {
+            width: 120px;
+            height: 120px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -7s;
+        }
+
+        @keyframes titleAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes subtitleAnimation {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, -50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(0, -100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-50px, -50px) rotate(270deg);
+            }
+        }
+
+        @keyframes slide {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100% 100%;
+            }
+        }
+
+        .page-header h1:hover {
+            animation: glowEffect 2s infinite;
+        }
+
+        @keyframes glowEffect {
+            0%, 100% {
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255,255,255,0.5),
+                             0 0 30px rgba(255,255,255,0.3);
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 100px 0 60px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header .breadcrumb {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+
+            .shape {
+                display: none;
+            }
+        }
+
+        /* Admission Bar Styles */
+        .admission-bar {
+            background: linear-gradient(135deg, #24b5c5, #1a8a98);
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .admission-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .admission-info {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .admission-text {
+            font-weight: 500;
+            white-space: nowrap;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .code-text {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .code-text strong {
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .action-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            animation: fadeIn 0.5s ease-out 0.2s backwards;
+        }
+
+        .download-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0.9;
+            font-size: 16px;
+            padding: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            width: 35px;
+            height: 35px;
+        }
+
+        .social-link:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .close-btn:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: white;
+            padding: 0 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 20px;
+        }
+
+        .logo img {
+            width: 250px;
+            height: 250px;
+            display: inline-block;
+            vertical-align: middle;
+            -ms-interpolation-mode: bicubic;
+            max-width: 100%;
+            border: none;
+            box-sizing: border-box;
+            object-fit: contain;
+        }
+
+        .school-names {
+            margin-right: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .school-name {
+            color: #333;
+            margin-left: 100px;
+            margin-right:  100px;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.2;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .school-name.secondary {
+            color: #666;
+            font-size: 22px;
+        }
+
+        @media only screen and (min-width: 40.063em) and (max-width: 64em) {
+            .logo img {
+                margin: 0;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link:hover {
+            color: #24b5c5;
+        }
+
+        .nav-link.active {
+            background: #f5f5f5;
+            border-radius: 4px;
+            color: #24b5c5;
+        }
+
+        @media (max-width: 1200px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-link {
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+                padding: 10px 0;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .logo img {
+                margin-top: 15px;
+                width: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-link {
+                padding: 6px 10px;
+                font-size: 13px;
+            }
+
+            .logo img {
+                margin-top: 10px;
+                width: 200px;
+            }
+        }
+
+        /* ... rest of the existing styles ... */
+
+        .main-logo {
+            margin-right: 10px;
+            width: 100px !important;
+            height: 100px !important;
+            object-fit: contain;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 1200px) {
+            .main-logo {
+                width: 100px !important;
+                height: 100px !important;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-logo {
+                width: 130px !important;
+                height: 130px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-logo {
+                width: 110px !important;
+                height: 110px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admission-bar" >
+        <div class="admission-info">
+            <a href="/admissions" </a>
+            <span class="admission-text">Admissions for 2024-25 now open.</span>
+            <span class="code-text">
+                <a href="tel:+916363163519" class="contact-link">
+                    <i class="fas fa-phone"></i> 
+                    <strong>+91 9901014412</strong>
+                </a> | 
+                <a href="mailto:info@scvbphs.edu.in" class="contact-link">
+                    <i class="fas fa-envelope"></i> 
+                    <strong>info@scvbphs.edu.in</strong>
+                </a>
+            </span>
+        </div>
+        <div class="action-links">
+            <a href="static/images/scvtbed.jpg" class="download-btn"><i class="fas fa-download"></i> Download brochure</a>
+            <div class="social-links">
+                <a href="#" class="social-link facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" class="social-link linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <button class="close-btn" title="Close"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="/" class="logo">
+                    <img src="static/images/Blue White Modern school Logo.png" alt="SCV and BPHS" class="main-logo">
+                    <div class="school-names">
+                        <p class="school-name">Sri Chayadevi Vidyanikethana School and</p>
+                        <p class="school-name secondary">Bhanuprakash High School ®</p>
+                    </div>
+                </a>
+                <div class="nav-links">
+                    <a href="/" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+                    <a href="/about" class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About</a>
+                    <a href="/admissions" class="nav-link {% if request.endpoint == 'admissions' %}active{% endif %}">Admissions</a>
+                    <a href="/gallery" class="nav-link {% if request.endpoint == 'gallery' %}active{% endif %}">Gallery</a>
+                    <a href="/staff" class="nav-link {% if request.endpoint == 'staff' %}active{% endif %}">Staff</a>
+                    <a href="/contact" class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                        <button class="close-flash">&times;</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SCV&BPHS</h3>
+                <img src="static/images/Blue White Modern school Logo.png" alt="SCV and BPHS" class="footer-logo">
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" onclick="alert('Online payment coming soon!')">Home</a></li>
+                    <li><a href="{{ url_for('admissions') }}">Admissions</a></li>
+                    <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                    <li><a href="{{ url_for('admin_login') }}">Admin Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +91 9900038358, +91 7090671299</li>
+                    <li><i class="fas fa-phone"></i> 0821-2460266</li>
+                    <li><i class="fas fa-envelope"></i> enquiry@scvbphs.edu.in</li>
+                    <li><i class="fas fa-envelope"></i> admissions@scvbphs.edu.in</li>
+                    <li><i class="fas fa-map-marker-alt"></i>pura gate, Krishnarajapete,Mandya,Karnataka 571426</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Pin Location</h3>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps?q=12.683487157921038,76.46847994015474&z=16&output=embed" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="social-links">
+                <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>© All rights reserved By SCV and BPHS | Developed by <a href="https://www.instagram.com/_vikas_vs_007/">Vikify Tech</a></p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+
+    <style>
+        footer {
+            background: #463AA1;
+            color: white;
+            padding: 40px 0 0;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding: 0 40px;
+        }
+
+        .footer-logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #FFD700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FFD700;
+            transform: translateX(5px);
+        }
+
+        .footer-section ul li i {
+            color: #FFD700;
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding: 20px 40px;
+            background: rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #FFD700;
+            color: #463AA1;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-bottom a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        @media (max-width: 1200px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-bottom {
+                padding: 20px;
+            }
+        }
+
+        /* Add WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+    </style>
+
+    <!-- Add WhatsApp floating button -->
+    <a href="https://wa.me/9901014412" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html> 

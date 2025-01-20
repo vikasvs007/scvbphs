@@ -1,0 +1,820 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Admin - Enquiries{% endblock %}
+
+{% block admin_title %}ALL ENQUIRIES{% endblock %}
+
+{% block breadcrumb %}Enquiries{% endblock %}
+
+{% block admin_content %}
+<div class="enquiries-section">
+    <div class="admin-header">
+        <h2>Manage Enquiries</h2>
+        <div class="admin-actions">
+            <div class="sidebar-menu">
+                <a href="{{ url_for('admin_profile') }}" class="menu-item">
+                    <div class="menu-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <span>Profile Settings</span>
+                    <div class="menu-indicator"></div>
+                </a>
+                <a href="{{ url_for('view_enquiries') }}" class="menu-item active">
+                    <div class="menu-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <span>Enquiries</span>
+                    <div class="menu-indicator"></div>
+                </a>
+            </div>
+            <a href="{{ url_for('admin_logout') }}" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <div class="enquiries-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Details</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enquiry in all_enquiries %}
+                <tr>
+                    <td>
+                        <span class="type-badge {{ 'admission' if enquiry.type == 'admission' else 'contact' }}">
+                            {{ enquiry.type|title }}
+                        </span>
+                    </td>
+                    <td>{{ enquiry.name }}</td>
+                    <td>
+                        <a href="mailto:{{ enquiry.email }}" class="email-link">
+                            <i class="fas fa-envelope"></i>
+                            {{ enquiry.email }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="tel:{{ enquiry.phone }}" class="phone-link">
+                            <i class="fas fa-phone"></i>
+                            {{ enquiry.phone }}
+                        </a>
+                    </td>
+                    <td>
+                        {% if enquiry.type == 'admission' %}
+                            Grade: {{ enquiry.grade }} → {{ enquiry.grade_interested }}
+                        {% else %}
+                            Subject: {{ enquiry.subject }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if enquiry.created_at is string %}
+                            {{ enquiry.created_at }}
+                        {% else %}
+                            {{ enquiry.created_at.strftime('%Y-%m-%d %H:%M') }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <span class="status-badge {{ enquiry.status.lower() }}">
+                            {{ enquiry.status }}
+                        </span>
+                    </td>
+                    <td class="actions">
+                        <button class="view-btn" data-enquiry-id="{{ enquiry.id }}" data-enquiry-type="{{ enquiry.type }}" title="View Details">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="delete-btn" data-enquiry-id="{{ enquiry.id }}" data-enquiry-type="{{ enquiry.type }}" title="Delete Enquiry">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Enquiry Details Modal -->
+<div id="enquiryModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Enquiry Details</h3>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="enquiry-details">
+                <div class="detail-group">
+                    <label>Type</label>
+                    <p id="modal-type"></p>
+                </div>
+                <div class="detail-group">
+                    <label>Name</label>
+                    <p id="modal-name"></p>
+                </div>
+                <div class="detail-group">
+                    <label>Email</label>
+                    <p id="modal-email"></p>
+                </div>
+                <div class="detail-group">
+                    <label>Phone</label>
+                    <p id="modal-phone"></p>
+                </div>
+                <div id="admission-details" style="display: none;">
+                    <div class="detail-group">
+                        <label>Current Grade</label>
+                        <p id="modal-grade"></p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Interested Grade</label>
+                        <p id="modal-grade-interested"></p>
+                    </div>
+                </div>
+                <div id="contact-details" style="display: none;">
+                    <div class="detail-group">
+                        <label>Subject</label>
+                        <p id="modal-subject"></p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Message</label>
+                        <p id="modal-message"></p>
+                    </div>
+                </div>
+                <div class="detail-group">
+                    <label>Date Submitted</label>
+                    <p id="modal-date"></p>
+                </div>
+                <div class="detail-group">
+                    <label>Status</label>
+                    <p id="modal-status"></p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="update-status-btn">Update Status</button>
+                <button class="delete-enquiry-btn">Delete Enquiry</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block admin_css %}
+<style>
+    .enquiries-section {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 30px;
+    }
+
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .admin-header h2 {
+        color: #333;
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .logout-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+        background: #c82333;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+    }
+
+    .enquiries-table {
+        width: 100%;
+        overflow-x: auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+    }
+
+    th {
+        background: #f8f9fa;
+        font-weight: 600;
+        color: #333;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    tbody tr:hover {
+        background: #f8f9fa;
+    }
+
+    .status-badge {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .status-badge.pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .status-badge.responded {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-badge.closed {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .view-btn, .delete-btn {
+        padding: 8px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+    }
+
+    .view-btn {
+        background: #4527a0;
+        color: white;
+    }
+
+    .delete-btn {
+        background: #dc3545;
+        color: white;
+    }
+
+    .view-btn:hover {
+        background: #371e7d;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(69,39,160,0.2);
+    }
+
+    .delete-btn:hover {
+        background: #c82333;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(220,53,69,0.2);
+    }
+
+    .email-link, .phone-link {
+        color: #4527a0;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .email-link:hover, .phone-link:hover {
+        color: #371e7d;
+        text-decoration: underline;
+    }
+
+    .alert {
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .alert-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    @media (max-width: 1200px) {
+        .enquiries-table {
+            font-size: 13px;
+        }
+
+        th, td {
+            padding: 12px 10px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .enquiries-section {
+            padding: 15px;
+        }
+
+        .admin-header {
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .logout-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        th, td {
+            padding: 10px 8px;
+            font-size: 12px;
+        }
+
+        .actions {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .view-btn, .delete-btn {
+            width: 28px;
+            height: 28px;
+            padding: 6px;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            font-size: 11px;
+        }
+    }
+
+    .admin-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .sidebar-menu {
+        display: flex;
+        gap: 10px;
+    }
+
+    .menu-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 6px;
+        color: #666;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .menu-item:hover, .menu-item.active {
+        background: rgba(69, 39, 160, 0.1);
+        color: #4527a0;
+    }
+
+    .menu-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: rgba(69, 39, 160, 0.1);
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .menu-item:hover .menu-icon, .menu-item.active .menu-icon {
+        background: #4527a0;
+        color: white;
+        transform: rotate(360deg);
+    }
+
+    .menu-item i {
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .menu-indicator {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background: #4527a0;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .menu-item:hover .menu-indicator, .menu-item.active .menu-indicator {
+        opacity: 1;
+    }
+
+    @media (max-width: 992px) {
+        .admin-actions {
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .sidebar-menu {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .menu-item {
+            flex: 1;
+            justify-content: center;
+        }
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+    }
+
+    .modal-content {
+        background: white;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        transform: translateY(-20px);
+        transition: transform 0.3s ease;
+    }
+
+    .modal.show .modal-content {
+        transform: translateY(0);
+    }
+
+    .modal-header {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-header h3 {
+        margin: 0;
+        color: #333;
+        font-size: 20px;
+    }
+
+    .close-modal {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #666;
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .close-modal:hover {
+        background: #f5f5f5;
+        color: #333;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .enquiry-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .detail-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .detail-group label {
+        color: #666;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .detail-group p {
+        color: #333;
+        font-size: 16px;
+        margin: 0;
+        padding: 8px 12px;
+        background: #f8f9fa;
+        border-radius: 4px;
+        border: 1px solid #eee;
+    }
+
+    .modal-actions {
+        margin-top: 30px;
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    .update-status-btn, .delete-enquiry-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .update-status-btn {
+        background: #4527a0;
+        color: white;
+    }
+
+    .delete-enquiry-btn {
+        background: #dc3545;
+        color: white;
+    }
+
+    .update-status-btn:hover {
+        background: #371e7d;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(69,39,160,0.2);
+    }
+
+    .delete-enquiry-btn:hover {
+        background: #c82333;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(220,53,69,0.2);
+    }
+
+    @media (max-width: 768px) {
+        .enquiry-details {
+            grid-template-columns: 1fr;
+        }
+
+        .modal-actions {
+            flex-direction: column;
+        }
+
+        .update-status-btn, .delete-enquiry-btn {
+            width: 100%;
+        }
+    }
+
+    .type-badge {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        text-align: center;
+        display: inline-block;
+        min-width: 80px;
+    }
+
+    .type-badge.admission {
+        background: #e3f2fd;
+        color: #1976d2;
+    }
+
+    .type-badge.contact {
+        background: #f3e5f5;
+        color: #7b1fa2;
+    }
+
+    #modal-message {
+        white-space: pre-wrap;
+        line-height: 1.5;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('enquiryModal');
+    const closeModal = document.querySelector('.close-modal');
+    let currentEnquiryId = null;
+    let currentEnquiryType = null;
+
+    // Handle view button clicks
+    document.querySelectorAll('.view-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const id = this.dataset.enquiryId;
+            const type = this.dataset.enquiryType;
+            currentEnquiryId = id;
+            currentEnquiryType = type;
+            
+            const endpoint = `/admin/enquiry/${id}`;
+            
+            fetch(endpoint)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('modal-type').textContent = type.charAt(0).toUpperCase() + type.slice(1);
+                    document.getElementById('modal-name').textContent = data.name;
+                    document.getElementById('modal-email').textContent = data.email;
+                    document.getElementById('modal-phone').textContent = data.phone;
+                    document.getElementById('modal-date').textContent = new Date(data.created_at).toLocaleString();
+                    document.getElementById('modal-status').textContent = data.status;
+                    
+                    // Show/hide appropriate details sections
+                    const admissionDetails = document.getElementById('admission-details');
+                    const contactDetails = document.getElementById('contact-details');
+                    
+                    if (type === 'admission') {
+                        admissionDetails.style.display = 'block';
+                        contactDetails.style.display = 'none';
+                        document.getElementById('modal-grade').textContent = data.grade;
+                        document.getElementById('modal-grade-interested').textContent = data.grade_interested;
+                    } else {
+                        admissionDetails.style.display = 'none';
+                        contactDetails.style.display = 'block';
+                        document.getElementById('modal-subject').textContent = data.subject;
+                        document.getElementById('modal-message').textContent = data.message;
+                    }
+                    
+                    modal.classList.add('show');
+                });
+        });
+    });
+
+    // Close modal when clicking the close button or outside
+    closeModal.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
+
+    // Handle delete button clicks (both in table and modal)
+    const handleDelete = async (id, type) => {
+        try {
+            if (confirm('Are you sure you want to delete this enquiry?')) {
+                const endpoint = `/admin/enquiry/${id}`;
+                const response = await fetch(endpoint, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    try {
+                        const data = await response.json();
+                        alert(data.message || 'Error deleting enquiry');
+                    } catch {
+                        alert('Error deleting enquiry. Server returned status: ' + response.status);
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Network error while deleting enquiry. Please check your connection and try again.');
+        }
+    };
+
+    // Attach delete handlers to all delete buttons
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const id = this.dataset.enquiryId;
+            const type = this.dataset.enquiryType;
+            console.log(`Deleting ${type} enquiry with ID:`, id);
+            handleDelete(id, type);
+        });
+    });
+
+    // Attach delete handler to modal delete button
+    document.querySelector('.delete-enquiry-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        if (currentEnquiryId && currentEnquiryType) {
+            console.log(`Deleting ${currentEnquiryType} enquiry from modal with ID:`, currentEnquiryId);
+            handleDelete(currentEnquiryId, currentEnquiryType);
+        }
+    });
+
+    // Handle status update
+    document.querySelector('.update-status-btn').addEventListener('click', async function() {
+        if (currentEnquiryId && currentEnquiryType) {
+            const newStatus = prompt('Enter new status (pending/responded/closed):', 'responded');
+            if (newStatus && ['pending', 'responded', 'closed'].includes(newStatus.toLowerCase())) {
+                try {
+                    const endpoint = `/admin/enquiry/${currentEnquiryId}/status`;
+                    
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ status: newStatus.toLowerCase() })
+                    });
+
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        try {
+                            const data = await response.json();
+                            alert(data.message || 'Error updating status');
+                        } catch {
+                            alert('Error updating status. Server returned status: ' + response.status);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Network error while updating status. Please check your connection and try again.');
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %} 

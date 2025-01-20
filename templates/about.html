@@ -1,0 +1,1006 @@
+{% extends "base.html" %}
+
+{% block title %}About - SCV and BPHS{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    <div class="header-content">
+        <h1>ABOUT US</h1>
+        <div class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>//</span>
+            <span>About</span>
+        </div>
+    </div>
+</section>
+
+<section class="about-content">
+    <div class="container">
+        <div class="vision-mission">
+            <div class="section-card vision">
+                <div class="icon-wrapper">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h2>Our Vision</h2>
+                <div class="language-toggle">
+                    <label class="switch">
+                        <input type="checkbox" class="vision-lang-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="lang-label">ಕನ್ನಡ</span>
+                </div>
+                <div class="content-wrapper">
+                    <div class="content english active">
+                        <p>To be a leading educational institution that nurtures global citizens with strong values, innovative thinking, and a commitment to excellence.</p>
+                    </div>
+                    <div class="content kannada">
+                        <p>ಶೈಕ್ಷಣಿಕ ಶ್ರೇಷ್ಠತೆಯನ್ನು ಪೋಷಿಸುವ, ನಾವೀನ್ಯತೆಯನ್ನು ಪ್ರೋತ್ಸಾಹಿಸುವ ಮತ್ತು ಜಾಗತಿಕ ಸವಾಲುಗಳನ್ನು ಆತ್ಮವಿಶ್ವಾಸ ಮತ್ತು ಕರುಣೆಯಿಂದ ಎದುರಿಸಲು ಸಿದ್ಧರಾಗಿರುವ ಸರ್ವತೋಮುಖ ವ್ಯಕ್ತಿಗಳನ್ನು ರೂಪಿಸುವ ಅಗ್ರಗಣ್ಯ ಶೈಕ್ಷಣಿಕ ಸಂಸ್ಥೆಯಾಗುವುದು.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-card mission">
+                <div class="icon-wrapper">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h2>Our Mission</h2>
+                <div class="language-toggle">
+                    <label class="switch">
+                        <input type="checkbox" class="mission-lang-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="lang-label">ಕನ್ನಡ</span>
+                </div>
+                <div class="content-wrapper">
+                    <div class="content english active">
+                        <p>To provide holistic education that empowers students with knowledge, skills, and character to succeed in an ever-evolving world.</p>
+                    </div>
+                    <div class="content kannada">
+                        <p>ನಾವೀನ್ಯಪೂರ್ಣ ಬೋಧನಾ ವಿಧಾನಗಳು, ಅತ್ಯಾಧುನಿಕ ಸೌಲಭ್ಯಗಳು ಮತ್ತು ಪೋಷಕ ವಾತಾವರಣದ ಮೂಲಕ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಜ್ಞಾನ, ಕೌಶಲ್ಯ ಮತ್ತು ಮೌಲ್ಯಗಳನ್ನು ನೀಡುವ ಸರ್ವಾಂಗೀಣ ಶಿಕ್ಷಣವನ್ನು ಒದಗಿಸುವುದು.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <div class="about-image">
+                <div class="image-frame">
+                    <img src="static/images/about.jpg" alt="School Building">
+                    <br>
+                    <h3 style="text-align: center;  color:black; text-decoration: solid;" >Sri Berrappa Mahaswamiji</h3>
+                    <h2 style="text-align: center; text-decoration: solid;">Founder of Sri Chayadevi Trust</h2>
+                  
+                    <div class="frame-overlay"></div>
+                </div>
+            </div>
+            <div class="about-text">
+                <h2>Welcome to Our School</h2>
+                <div class="highlight-bar"></div>
+                <p>Our school stands as a beacon of educational excellence, fostering an environment where learning transcends traditional boundaries. We believe in nurturing not just academic excellence, but also character, creativity, and leadership skills.</p>
+                <p>With state-of-the-art facilities and dedicated educators, we provide a platform for students to discover their potential and pursue their passions.</p>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Excellence in Education</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <span>Experienced Faculty</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-flask"></i>
+                        <span>Modern Facilities</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-heart"></i>
+                        <span>Holistic Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="values-section">
+            <h2>Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>Striving for the highest standards in everything we do</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>Building trust through honesty and ethical behavior</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>Embracing new ideas and creative solutions</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Mindset</h3>
+                    <p>Preparing students for a connected world</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2>PEOPLE BEHIND SCV AND BPHS</h2>
+            <p class="team-intro">The prolific endeavors of these farsighted personalities have contributed to the best practices in learning within the educational spectrum, and are used in all institutions run by the Trust.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="static/images/about.jpg" alt="Team Member">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sri.Berrappa Mahaswamiji</h3>
+                        <p class="member-title">Founder,Sri Chayadevi Trust<br> Spiritual Leader and Visionary Preacher<br>Devotee of Lord Shanideva<br>Mysore</p>
+                        <p class="member-description">A true statesman with a visionary zeal, Sri Berrappa Mahaswamiji is not only an accomplished educational leader and a chartered professional but also a divine preacher. With unwavering devotion, he spreads the teachings and blessings of Lord Shanideva, inspiring countless lives with his spiritual guidance and wisdom.</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="static/images/photogallery/bhanusir.jpeg" alt="Team Member">
+                    </div>
+                    <div class="member-info">
+                        <h3>Mr.Bhanuprakash</h3>
+                        <p class="member-title">Chairman, SCV and BPHS</p>
+                        <p >
+                        <p class="member-description">
+                            Mr.Bhanuprakash a visionary leader and compassionate guide, the Chairman of our institution is deeply committed to the cause of education and societal upliftment. As a dedicated politician, he brings transformative ideas to the community, advocating for holistic development and inclusive growth.  
+                        </p>
+                        <p class="member-description">
+                            Beyond his political endeavors, he has established a B.Ed college to empower aspiring educators and foster excellence in teaching. His altruistic spirit is further exemplified by running an orphanage, providing care, education, and hope to countless children. A true beacon of leadership and humanity, he continues to inspire and instill values that shape a better future.
+                        </p>
+                        
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="static/images/photogallery/savithmaa.jpg" alt="Team Member">
+                    </div>
+                    <div class="member-info">
+                        <h3>Mrs. Savitha Ramesh</h3>
+                        <p class="member-title">Administrator, SCV and BPHS</p>
+                        <p class="member-description">
+                            Mrs. Savitha Ramesh is a dynamic leader and the proud President of the Ladies Kannada Sahitya Parishat. A gifted poet with a flair for creativity, she beautifully blends her passion for literature with her dedication to education.  
+                        </p>
+                        <p class="member-description">
+                            As the administrator of SCV and BPHS, she has been the driving force behind creating a nurturing and empowering environment for holistic learning. Her exceptional administrative skills and unwavering commitment to the institution have paved the way for its growth and success.  
+                        </p>
+                        <p class="member-description">
+                            Beyond her professional accomplishments, she is a loving mother, balancing her roles with grace and compassion, inspiring everyone around her with her dedication to family, community, and education.
+                        </p>
+                    </div>
+                    
+
+                <!-- <div class="team-member">
+                    <div class="member-image">
+                        <img src="{{ url_for('static', filename='images/dac325da8d24fefb7f9c0ab236748f69.jpg') }}" alt="Team Member">
+                    </div>
+                    <div class="member-info">
+                        <h3>Mr.</h3>
+                        <p class="member-title">Director, SCV and BPHS</p>
+                        <p class="member-description">His passion for excellence through novel ideas in education has put the establishment a rung above the rest.His technology aided learning opens up all round personality development and empowering the students with the academic and social skills to face the challenges of tomorrow and his areas of interest.</p>
+                    </div> -->
+                <!-- </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="{{ url_for('static', filename='images/dac325da8d24fefb7f9c0ab236748f69.jpg') }}" alt="Team Member">
+                    </div>
+                    <div class="member-info">
+                        <h3>Mr.</h3>
+                        <p class="member-title">Trustee, SCV and BPHS</p>
+                        <p class="member-description">An MBA, MPA and a practicing clinician with qualification in Health Care Management and Internal Medicine, he brings in over a decade of international experience.His has special interest in the field of education.His has special interest in the field of education and strongly believes that there can be no compromise in the quality of education that we impart in our schools.</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="additional-trust-section">
+    <div class="container">
+        <h2>Our Associated Educational Institutions</h2>
+        <div class="trust-cards">
+            <div class="trust-card">
+                <div class="card-image">
+                    <img src="static/images/scvanatasrama.jpg" alt="Delhi Public School Bangalore">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <h3>SRI CHAYADEVI ANATHASHRAMA TRUST (R) </h3>
+                    <p>We, Sri Chayadevi Anathashrama Trust situated at Jayanagar Extention, Mysore, Karnataka, are a non-profit organisation with a mission to provide orphan children with high-quality education, enabling them to maximize their potential and transform their lives completely. We work in the field of education by collecting funds from influential and financially well-aided people and provide a supplemental education to the needy.</p>
+                    <a href="https://www.scatindia.in/#" class="card-link" target="_blank">
+                        Visit Website <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="trust-card">
+                <div class="card-image">
+                    <img src="static/images/scvtbed.jpg" alt="Delhi Public School Mysore">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <h3>SCVT College of Education (B.Ed)(R)</h3>
+                    <p>SCVT B.Ed College was established in 1993 and is affiliated to Mysore University. The campus is located in the heart of the city and is about 5 km from Mysore City Railway Station and Bus Stand. The College is providing excellent opportunities to the students in pursuit of knowledge. The infrastructure viz.,
+                        library and laboratory are well equipped, excellent method of teaching and have a cordial relationship between the students and teachers. Ample opportunities are being provided to the students to take part in curricular and co-curricular activities. The faculty members are well qualified, experienced and motivated.</p>
+                    <a href="https://scvt.co.in/index.html" class="card-link" target="_blank">
+                        Visit Website <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="trust-card">
+                <div class="card-image">
+                    <img src="static/images/hunsur.jpg" alt="School of India">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <h3>SCV School of Education Hunsur(R)</h3>
+                    <p>Choosing where to undergo your teacher training is a major decision and we believe that SCV SCHOOL will be a choice you will never regret, especially if you are ambitious and determined to succeed as an inspiring teacher. Ours is a popular Teacher Education Institution which has sculpted a difference in the path of preparing competency based, commitment oriented and empowered teachers and teacher educators.</p>
+                    <a href="https://scvt.co.in/index.html" class="card-link" target="_blank">
+                        Visit Website <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.additional-trust-section {
+    padding: 80px 0;
+    background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+}
+
+.additional-trust-section h2 {
+    color: #4527a0;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 700;
+    position: relative;
+}
+
+.additional-trust-section h2:after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #4527a0, #7b1fa2);
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+.trust-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.trust-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trust-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(69,39,160,0.2);
+}
+
+.card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(69,39,160,0.4), rgba(123,31,162,0.4));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.trust-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.trust-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-content h3 {
+    color: #4527a0;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.card-content p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #4527a0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.card-link:hover {
+    color: #7b1fa2;
+}
+
+.card-link i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 992px) {
+    .trust-cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .additional-trust-section {
+        padding: 60px 0;
+    }
+
+    .additional-trust-section h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .trust-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .card-content h3 {
+        font-size: 1.2rem;
+    }
+}
+</style>
+<style>
+    .about-content {
+        padding: 60px 0;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    }
+
+    .vision-mission {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    .section-card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .section-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(45deg, #4527a0, #7b1fa2);
+        transition: height 0.3s ease;
+    }
+
+    .section-card:hover::before {
+        height: 10px;
+    }
+
+    .section-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .icon-wrapper {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, #4527a0, #7b1fa2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .icon-wrapper::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        border-radius: 50%;
+        z-index: -1;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        70% {
+            transform: scale(1.1);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
+
+    .section-card h2 {
+        color: #4527a0;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .section-card p {
+        color: #666;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .about-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+        margin: 60px 0;
+    }
+
+    .about-image {
+        position: relative;
+    }
+
+    .image-frame {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .frame-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(69,39,160,0.4), rgba(123,31,162,0.4));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .image-frame:hover img {
+        transform: scale(1.05);
+    }
+
+    .image-frame:hover .frame-overlay {
+        opacity: 1;
+    }
+
+    .about-text h2 {
+        color: #4527a0;
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .highlight-bar {
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, #4527a0, #7b1fa2);
+        margin-bottom: 20px;
+        border-radius: 2px;
+    }
+
+    .about-text p {
+        color: #555;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .feature {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+
+    .feature:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .feature i {
+        font-size: 1.5rem;
+        color: #4527a0;
+    }
+
+    .feature span {
+        color: #333;
+        font-weight: 500;
+    }
+
+    .values-section {
+        padding: 60px 0;
+        text-align: center;
+    }
+
+    .values-section h2 {
+        color: #4527a0;
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+    }
+
+    .values-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(to right, #4527a0, #7b1fa2);
+        border-radius: 2px;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .value-card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .value-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, #4527a0, #7b1fa2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .value-card h3 {
+        color: #4527a0;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .value-card p {
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 992px) {
+        .vision-mission,
+        .about-section {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .values-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .section-card,
+        .value-card {
+            padding: 25px;
+        }
+
+        .about-text h2,
+        .values-section h2 {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .values-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Team Section Styles */
+    .team-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        margin-top: 60px;
+    }
+
+    .team-section h2 {
+        color: #4527a0;
+        font-size: 2.2rem;
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .team-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(to right, #4527a0, #7b1fa2);
+        border-radius: 2px;
+    }
+
+    .team-intro {
+        text-align: center;
+        color: #666;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        padding: 20px;
+        margin-top: 40px;
+    }
+
+    .team-member {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .team-member:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .member-image {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .member-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .team-member:hover .member-image img {
+        transform: scale(1.05);
+    }
+
+    .member-info {
+        padding: 30px;
+        background: white;
+    }
+
+    .member-info h3 {
+        color: #4527a0;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .member-title {
+        color: #7b1fa2;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    .member-description {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+
+    @media (max-width: 992px) {
+        .team-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .team-section h2 {
+            font-size: 1.8rem;
+        }
+
+        .team-intro {
+            font-size: 1rem;
+        }
+
+        .team-grid {
+            grid-template-columns: 1fr;
+            max-width: 500px;
+            margin: 40px auto 0;
+        }
+
+        .member-image {
+            height: 250px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-info h3 {
+            font-size: 1.3rem;
+        }
+
+        .member-description {
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Language Toggle Styles */
+    .language-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 15px 0;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, #4527a0, #7b1fa2);
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 22px;
+        width: 22px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background: linear-gradient(45deg, #7b1fa2, #4527a0);
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(30px);
+    }
+
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .lang-label {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #4527a0;
+    }
+
+    .content-wrapper {
+        position: relative;
+        min-height: 120px;
+    }
+
+    .content {
+        position: absolute;
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        transform: translateY(20px);
+    }
+
+    .content.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .content.kannada {
+        font-family: 'Noto Sans Kannada', sans-serif;
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+        .content-wrapper {
+            min-height: 150px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .content-wrapper {
+            min-height: 180px;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const visionToggle = document.querySelector('.vision-lang-toggle');
+    const missionToggle = document.querySelector('.mission-lang-toggle');
+    
+    function toggleLanguage(toggle, boxClass) {
+        const box = toggle.closest('.section-card');
+        const english = box.querySelector('.content.english');
+        const kannada = box.querySelector('.content.kannada');
+        
+        if (toggle.checked) {
+            english.classList.remove('active');
+            kannada.classList.add('active');
+        } else {
+            kannada.classList.remove('active');
+            english.classList.add('active');
+        }
+    }
+    
+    visionToggle.addEventListener('change', () => toggleLanguage(visionToggle, '.vision'));
+    missionToggle.addEventListener('change', () => toggleLanguage(missionToggle, '.mission'));
+});
+</script>
+
+{% endblock %} 
