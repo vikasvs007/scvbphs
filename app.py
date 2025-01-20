@@ -386,7 +386,7 @@ def view_album(album_name):
             'images': ['image.png','kannada.jpeg','achivement.jpeg','pratibha.jpeg',
                        'prixew.jpeg','scienceday.jpeg',
                        'prize1.jpeg','prize.jpeg','vote.jpeg','workshop (2).jpeg','workshop (3).jpeg','workshop3.jpeg',
-                       'workshop6.jpeg','prize (2).jpeg','worksop5.jpeg','workshop7.jpeg']
+                       'workshop6.jpeg','prize (2).jpeg','worksop5.jpeg','workshop7.jpeg','election.jpeg']
         }
     }
     
