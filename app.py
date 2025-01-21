@@ -377,7 +377,7 @@ def view_album(album_name):
             'description': 'Engaging in various educational and extracurricular activities',
             'folder': 'activities',
             'images': ['yoga.jpeg','yoga2.jpeg','yoga3.jpeg','yoga4.jpeg','yoga5.jpeg','yoga7.jpeg','yoga8.jpeg','kannada.jpeg','karate.jpeg','karateimage.jpeg',
-                       'pri.jpeg','prize.jpeg','parent.jpeg','parents.jpeg']
+                       'pri.jpeg','prize.jpeg','parent.jpeg','parents.jpeg','entrance.jpeg','hut.jpeg','hutwithteachers.jpeg','panchayt.jpeg','rangoli.jpeg']
         },
         'achievements': {
             'title': 'Student Achievements',
